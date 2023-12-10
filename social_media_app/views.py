@@ -40,3 +40,24 @@ def signup(request):
 
     else:
         return render(request, 'signup.html')
+    
+
+
+def signin(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect("/")
+        elif not User.objects.filter(username=username).exists():
+            messages.info(request, "User does not exists.")
+            return redirect('signin')
+        else:
+            messages.info(request, "Invalid Credentials.")
+            return redirect("signin")
+    else:
+        return render(request, 'signin.html')
