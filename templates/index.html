@@ -261,9 +261,11 @@
                                         <a href="##"><strong>{{post.user|capfirst}}</strong></a> {{post.caption}}
                                     </p>
                                 </div>
-                                <div>
+                                <div class="p-2 rounded-full text-black">
                                     {% if post.no_of_likes > 0 %}
-                                    <p>{{post.no_of_likes}} Like{{post.no_of_likes|pluralize}}</p>
+                                        <p>{{post.no_of_likes}} Like{{post.no_of_likes|pluralize}}</p>
+                                    {% else %}
+                                        <p>No Likes</p>
                                     {% endif %}
                                 
                                 </div>
