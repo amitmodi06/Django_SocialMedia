@@ -71,12 +71,17 @@ def profile(request, pk):
     else:
         button_text = "Follow"
 
+    user_followers = len(FollowerCount.objects.filter(user=user))
+    user_following = len(FollowerCount.objects.filter(follower=user))
+
     context = {
         "user_object" : user_object,
         "user_profile" : user_profile,
         "user_posts" : user_posts,
         "user_post_length" : user_post_length,
         "button_text" : button_text,
+        "user_followers" : user_followers,
+        "user_following" : user_following,
     }
     return render(request, "profile.html", context)
 
