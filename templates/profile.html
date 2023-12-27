@@ -27,13 +27,17 @@
 	<section>
 			<div class="feature-photo">
 				<figure><img src="{{user_profile.profilebanner.url}}" alt=""></figure>
-				<form>
+				<form action="{% url 'follow' %}" method="POST">
+					{% csrf_token %}
 					<div class="add-btn">
 					<span style="color: white; font-size: 27px; margin-right: 520px;"><b><u><a href="/">Home</a></u></b></span>
 					<span style="color: white; font-size: 27px;"><b>{{user_post_length}} Post{{user_post_length|pluralize}}</b></span>
 					<span style="color: white; font-size: 27px;"><b>1.7m followers</b></span>
 					<span style="color: white; font-size: 27px;"><b>3.5k following</b></span>
-					<a href="" title="" data-ripple=""><button style="background-color: #ffc0cb; border: #ffc0cb;">Follow</button></a>
+
+					<input type='hidden' value="{{user.username}}" name="follower" />
+					<input type='hidden' value="{{user_object.username}}" name="user" />
+					<a href="" title="" data-ripple=""><button type="submit" style="background-color: #ffc0cb; border: #ffc0cb;">Follow</button></a>
 					
 					</div>
 				</form>
